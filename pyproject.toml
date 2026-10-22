@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "stable-audio-local"
-version = "0.1.0"
+version = "0.1.1"
 description = "Independent Windows setup, launch and raw-audio benchmark tools for Stable Audio 3 Medium"
 readme = "README.md"
 requires-python = ">=3.11"

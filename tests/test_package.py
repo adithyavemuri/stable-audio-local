@@ -34,7 +34,7 @@ class OrchestrationTests(unittest.TestCase):
             self.assertFalse(target.exists())
             commands = [json.loads(line)["command"] for line in output.getvalue().splitlines()]
             self.assertTrue(any(runtime.SPEC["commit"] in command for command in commands))
-            self.assertTrue(any(str(target / runtime.SPEC["folder"]) in command for command in commands))
+            self.assertTrue(any(str(target.resolve() / runtime.SPEC["folder"]) in command for command in commands))
             joined = " ".join(str(item) for command in commands for item in command)
             self.assertNotIn("--all-extras", joined)
             self.assertNotIn("--extra lora", joined)
@@ -76,7 +76,7 @@ class OrchestrationTests(unittest.TestCase):
             workspace = Path(folder)
             (workspace / runtime.SPEC["folder"]).mkdir()
             args = SimpleNamespace(workspace=workspace, dry_run=False)
-            with patch.object(runtime.sys, "platform", "win32"), patch.object(runtime.subprocess, "check_output", return_value="https://example.com/unofficial.git\n"), patch.object(runtime, "run") as mutate:
+            with patch.object(runtime.sys, "platform", "win32"), patch.object(runtime.platform, "machine", return_value="AMD64"), patch.object(runtime.subprocess, "check_output", return_value="https://example.com/unofficial.git\n"), patch.object(runtime, "run") as mutate:
                 with self.assertRaisesRegex(RuntimeError, "official"):
                     runtime.setup_repo(args)
                 mutate.assert_not_called()
@@ -86,7 +86,7 @@ class OrchestrationTests(unittest.TestCase):
             workspace = Path(folder)
             (workspace / runtime.SPEC["folder"]).mkdir()
             args = SimpleNamespace(workspace=workspace, dry_run=False)
-            with patch.object(runtime.sys, "platform", "win32"), patch.object(runtime.subprocess, "check_output", side_effect=[runtime.SPEC["upstream"], " M source.py\n"]), patch.object(runtime, "run") as mutate:
+            with patch.object(runtime.sys, "platform", "win32"), patch.object(runtime.platform, "machine", return_value="AMD64"), patch.object(runtime.subprocess, "check_output", side_effect=[runtime.SPEC["upstream"], " M source.py\n"]), patch.object(runtime, "run") as mutate:
                 with self.assertRaisesRegex(RuntimeError, "tracked changes"):
                     runtime.setup_repo(args)
                 mutate.assert_not_called()

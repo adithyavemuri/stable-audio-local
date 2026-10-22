@@ -12,7 +12,7 @@ The automatic model setup targets **native Windows x86-64 with an NVIDIA CUDA GP
 The tested machine was an RTX 3080 Laptop GPU with 16 GB VRAM.
 
 ```powershell
-uv tool install git+https://github.com/adithyavemuri/stable-audio-local.git@v0.1.0
+uv tool install git+https://github.com/adithyavemuri/stable-audio-local.git@v0.1.1
 stable-audio-local --help
 stable-audio-local setup
 ```
@@ -145,7 +145,7 @@ uv pip install --python .venv\Scripts\python.exe -e . build
 Tests cover dry-run isolation, argument handling, refusal of unofficial/dirty checkouts,
 source protection and overwrite behavior. CI runs these lightweight tests and builds on
 Windows/Linux with Python 3.11/3.12; it does not download weights or claim GPU coverage.
-Wheel and source distributions are attached to the GitHub `v0.1.0` release. The package
+Wheel and source distributions are attached to the GitHub `v0.1.1` release. The package
 is not published to PyPI. This repository is independent of the other audio wrapper.
 
 MIT applies to this wrapper code only. Model access and use remain subject to the
