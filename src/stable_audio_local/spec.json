@@ -1,0 +1,17 @@
+{
+  "name": "stable-audio-local",
+  "kind": "stable",
+  "folder": "stable-audio-3",
+  "port": 7861,
+  "description": "Independent Stable Audio 3 Medium setup, Gradio launch and raw music benchmarks",
+  "upstream": "https://github.com/Stability-AI/stable-audio-3.git",
+  "commit": "77e0398c26f7d22d801ec1bb036307e8b231f741",
+  "max_duration": 380,
+  "model_repo": "stabilityai/stable-audio-3-medium",
+  "model_revision": "d4d3579395a8ac0df4ab13b5b1d7138ce7290f81",
+  "weights": {
+    "model.safetensors": 9222116660,
+    "t5gemma-b-b-ul2/model.safetensors": 1183022944
+  },
+  "flash_wheel": "https://github.com/sdbds/flash-attention-for-windows/releases/download/2.8.2/flash_attn-2.8.2+cu128torch2.7.1cxx11abiFALSEfullbackward-cp311-cp311-win_amd64.whl"
+}
